@@ -12,16 +12,16 @@ import java.nio.IntBuffer;
 public class Game {
 
     private static final float[] vertices = {
-            0.5f, 0.5f, 0.0f, // 0 -> Top right
-            0.5f, -0.5f, 0.0f, // 1 -> Bottom right
-            -0.5f, -0.5f, 0.0f, // 2 -> Bottom left
-            -0.5f, 0.5f, 0.0f, // 3 -> Top left
+            0.2f, 0.2f, 0.0f, // 0 -> Top right
+            0.2f, -0.2f, 0.0f, // 1 -> Bottom right
+            -0.2f, -0.2f, 0.0f, // 2 -> Bottom left
+            -0.2f, 0.2f, 0.0f, // 3 -> Top left
     };
 
     private static final float[] colors = {
-            1.0f, 0.0f, 0.0f,
-            0.0f, 1.0f, 0.0f,
-            0.0f, 0.0f, 1.0f,
+            1.0f, 0.0f, 1.0f,
+            0.0f, 1.0f, 1.0f,
+            1.0f, 1.0f, 0.0f,
             0.0f, 0.0f, 0.0f,
     };
 
@@ -113,10 +113,14 @@ public class Game {
     }
 
     public static void update(long window) {
-        if(GLFW.glfwGetKey(window, GLFW.GLFW_KEY_D) == GLFW.GLFW_PRESS) {
-            matrix = matrix.translate(0.01f, 0f, 0f);
+        if(GLFW.glfwGetKey(window, GLFW.GLFW_KEY_W) == GLFW.GLFW_PRESS) {
+            matrix = matrix.translate(0f, 0.001f, 0f);
+        } if(GLFW.glfwGetKey(window, GLFW.GLFW_KEY_S) == GLFW.GLFW_PRESS) {
+            matrix = matrix.translate(0f, -0.001f, 0f);
+        } if(GLFW.glfwGetKey(window, GLFW.GLFW_KEY_D) == GLFW.GLFW_PRESS) {
+            matrix = matrix.translate(0.001f, 0f, 0f);
         } if(GLFW.glfwGetKey(window, GLFW.GLFW_KEY_A) == GLFW.GLFW_PRESS) {
-            matrix = matrix.translate(-0.01f, 0f, 0f);
+            matrix = matrix.translate(-0.001f, 0f, 0f);
         }
 
         // TODO: Send to GPU only if position updated
